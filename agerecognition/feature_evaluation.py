@@ -10,7 +10,7 @@ import torchaudio.transforms as T
 from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
 from scipy.io.wavfile import write
-
+from train_HVAE import HVAE  # 导入 HVAE 模型类
 
 # 自定义数据集
 class VoiceDataset(Dataset):
