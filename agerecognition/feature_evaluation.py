@@ -102,12 +102,17 @@ def evaluate_hvae(model_path, data_dir):
             for filename, diff, _ in files:
                 f.write(f"  {filename}: {diff}\n")
 
+    # 保存最小差异潜在表示到统一的模型文件
+    latent_rep_filename = 'latent_rep_min_diff.pth'
+    torch.save(selected_latent_representations, latent_rep_filename)
+    print(f"最小差异潜在表示已保存为 '{latent_rep_filename}'。")
+    '''
     # 保存最小差异潜在表示到第二个模型文件
     for age_group, (min_diff, latent_rep) in selected_latent_representations.items():
         latent_rep_filename = f'selected_latent_rep_{age_group}.pth'
         torch.save(latent_rep, latent_rep_filename)
         print(f"最小差异潜在表示已保存为 '{latent_rep_filename}'，年龄组: {age_group}")
-
+    '''
 
 if __name__ == '__main__':
     model_path = 'hvae_model.pth'  # 训练好的模型路径
