@@ -9,6 +9,7 @@ import torchaudio
 import torchaudio.transforms as T
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import accuracy_score
+from train_HVAE import HVAE  # 导入 HVAE 模型类
 
 # 自定义数据集
 class VoiceDataset(Dataset):
@@ -69,11 +70,11 @@ def test_hvae(model_path, data_dir):
             recon_batch = model.decoder(z)
 
             for i in range(len(data)):
-                all_true_labels.append(age_groups[i])
+                all_true_labels.append(age_groups)
                 # 这里假设我们使用最小差异潜在表示来进行简单的分类
                 # 实际中可以使用一个分类器进行预测[需要优化]
                 # 这里我们假设潜在表示能直接映射到年龄组（需要根据具体实现调整）
-                predicted_age_group = age_groups[i]  # 此处应替换为实际的分类逻辑
+                predicted_age_group = age_groups  # 此处应替换为实际的分类逻辑
                 all_pred_labels.append(predicted_age_group)
 
     # 计算准确率
